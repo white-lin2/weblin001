@@ -1,0 +1,83 @@
+<html>
+<head>
+    <title>css-動畫</title>
+    <style>
+        div {
+            margin: 5px;
+        }
+        @keyframes k1 {
+            0% { background: linear-gradient(90deg,white,pink 10%,black);}
+            13% { background: linear-gradient(90deg,white,pink 40%,black);}
+            25% { background: linear-gradient(90deg,white,pink 60%,black);}
+            37% { background: linear-gradient(90deg,white,pink 80%,black);}
+            50% { background: linear-gradient(90deg,white,pink 99%,black);}
+            63% { background: linear-gradient(90deg,white,pink 60%,black);}
+            75% { background: linear-gradient(90deg,white,pink 40%,black);}
+            87% { background: linear-gradient(90deg,white,pink 20%,black);}
+            100% { background: linear-gradient(90deg,white,pink 5%,black);}
+        
+    }
+    #a1 {
+        height: 50px;
+        width: 400px;
+        animation: k1 1s infinite linear;
+    }
+    @keyframes k2 {
+            0% { background: linear-gradient(90deg,white,black);}
+            7% { background: linear-gradient(0deg,white,black);}
+            14% { background: linear-gradient(30deg,white,black);}
+            21% { background: linear-gradient(60deg,white,black);}
+            28% { background: linear-gradient(90deg,white,black);}
+            35% { background: linear-gradient(120deg,white,black);}
+            42% { background: linear-gradient(150deg,white,black);}
+            49% { background: linear-gradient(180deg,white,black);}
+            58% { background: linear-gradient(210deg,white,black);}
+            63% { background: linear-gradient(240deg,white,black);}
+            70% { background: linear-gradient(270deg,white,black);}
+            77% { background: linear-gradient(300deg,white,black);}
+            84% { background: linear-gradient(330deg,white,black);}
+            100% { background: linear-gradient(330deg,white,black);}
+
+    }
+    #a2 {
+        height: 150px;
+        width: 400px;
+        animation: k2 400ms infinite linear;
+    }
+    @keyframes k3 {
+        0% { background: linear-gradient(90deg,white,pink 0%,black);}
+        25% { background: linear-gradient(90deg,white,pink 10%,black);}
+        50% { background: linear-gradient(90deg,white,pink 20%,black);}
+        75% { background: linear-gradient(90deg,white,pink 30%,black);}
+        100% { background: linear-gradient(90deg,white,pink 50%,black);}
+    }
+     #a3 {
+        height: 150px;
+        width: 400px;
+        animation: k3 0.5s infinite linear;
+    }
+    @keyframes k5 {
+        0% { background: repeating-conic-gradient(white 20%,blue 25%,white 30%);}
+        25% { background: repeating-conic-gradient(blue 20,white 25%,blue 30%);}
+        50% { background: repeating-conic-gradient(white 20%,blue 25%,white 30%);}
+    }
+    #a5 {
+        height: 200px;
+        width: 400px;
+        animation: k5 0.3s infinite linear;
+    }
+
+        
+        
+
+    </style>
+</head>
+<body>
+    <div id="a1"></div>
+    <div id="a2"></div>
+    <div id="a3"></div>
+    <div id="a4"></div>
+    <div id="a5"></div>
+    <div id="a6"></div>
+</body>
+</html>

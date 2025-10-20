@@ -1,10 +1,13 @@
 <html>
 <head>
-    <title>css漸層</title>
+    <title>css-漸層</title>
     <style>
+        div {
+            margin: 5px;
+        }
         #d1 {
             height: 100px;
-            width: 400;
+            width: 400px;
             /*to:top right bottom left */
             /* 0~360deg (degree) 由上開始順時針方向*/
             background: linear-gradient(to right,blue,white);
@@ -18,7 +21,39 @@
             height: 50px;
             width: 400px;
             background: linear-gradient(90deg,black,white 50%,blue)
-        }    
+        }   
+        #d5{
+            height: 50px;
+            width: 400px;
+            background: repeating-linear-gradient(45deg,white 30%,black 20%,white 40%);
+        } 
+        #d6 {
+            height: 200px;
+            width: 400px;
+            background: radial-gradient(circle,blue,white);
+        }
+        #d7{
+            height: 200px;
+            width: 400px;
+            background: radial-gradient(circle,blue,white 30%,black);
+        }
+        #d8{
+            height: 200px;
+            width: 400px;
+            background: linear-gradient(90deg,black,white 50%,blue);
+            display: inline-block;
+        }   
+        #d9 {
+            height: 200px;
+            width: 400px;
+            background: linear-gradient(black,blue)
+        }
+        #d10{
+            height: 200px;
+            width: 400px;
+            background:conic-gradient(45deg,white 30%,black 20%,white 40%);
+
+        } 
         
 
     </style>
@@ -27,5 +62,13 @@
     <div id="d1"></div>
     <div id="d2"></div>
     <div id="d3"></div>
+    <div id="d4"></div>
+    <div id="d5"></div>
+    <div id="d6"></div>
+    <div id="d7"></div>
+    <div id="d8"></div>
+    <div id="d9"></div>
+    <div id="d10"></div>
+    <div id="d11"></div>
 </body>
 </html>
