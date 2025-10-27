@@ -1,0 +1,75 @@
+<html>
+<head>
+    <title></title>
+    <style>
+        /** 
+           width 寬 height 高
+           padding 內填充
+           margin 外邊界
+           border 框線
+              width  線寬
+              color  transparent 透明色
+              style  樣式:
+                solid   實線
+                dashed  虛線
+                dotted  點點
+                double  雙線
+        top/right/bottom/lefe  上/右/下/左
+        top/x軸/bottom         上/左右/下
+        y軸/x軸                上下/左右
+        四邊                   四邊相同
+        **/
+        #d1 {
+            width: 200px;
+            height: 100px;
+            background-color: rgb(116, 116, 199);
+            border: 1px black;
+        }
+        #d2 {
+            width: 200px;
+            height: 100px;
+            background-color: powderblue;
+            border: 10px black solid;
+            margin: 5px 0px;
+            padding: 5px 10px 15px 20px;
+            /*box-sizing: border-box;*/
+        }
+        #d3 {
+            width: 200px;
+            height: 100px;
+            background-color: powderblue;
+            border: 1px black solid;
+            border-width: 5px 10px 20px;
+            border-style: solid dashed dotted double;
+        }
+        #d4 {
+            width: 300px;
+            height: 200px;
+            border: 10px solid black ;
+            margin: 10px 0px ;
+            border-radius: 50px 50px;
+        }
+        #d5{
+            width: 200px;
+            height: 100px;
+            border: 20px solid black ;
+            border-color: powderblue slategray pink gray;    
+        }
+        #d6 {
+            width: 0px;
+            height: 0px;
+            border: 100px solid black ;
+            border-color: powderblue slategray pink gray ;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="d1"></div>
+    <div id="d2">你看我就說吧</div>
+    <div id="d3">誰要看你說</div>
+    <div id="d4"></div>
+    <div id="d5"></div>
+    <div id="d6"></div>
+</body>
+</html>
