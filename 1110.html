@@ -6,14 +6,41 @@
     //js單行註解
         function px(){
             console.log("px99")
-            alert("px!!")
+            alert("px!!")       /*訊息方塊*/
+            prompt("Dachuonly") /*提示語*/
+            parseInt("a01234")  /*把字串變成整數，不是數字的話回傳NaN*/
+            confirm("確定?")
+        }
+        function see(){
+            var n1=parseInt(document.getElementById("n1").value);
+            var n1=parseInt(document.getElementById("n2").value);
+            var n3=document.getElementById("n3")
+            var ans=document.getElementById("ans");
+
+            if(isNaN(n1)){
+                n1=0
+            }
+            n2=isNaN(n2)? 0 : n2;
+
+            n3.value=n1+n2;
+            ans.innerHTML=(n1+n2)
         }
     </script>
 </head>
 <body>
+    <input type="text" placeholder="輸入文字用" value="文字內容"><br>輸入些什麼<br>
+    <br>
+    <input type="password" placeholder="灰灰一個提示語" value="1234"><br>輸入密碼用<br>
+    <br>
+    <input type="date" value="2025-04-29"><!-- value格式:YYYY-MM-DD--><br>
+    <input id="chuuya" type="datetime-local"><!-- value格式:YYYY-MM-DDThh:mm--><br>
+    <br>
+    <input id="color" type="color" value="#465F78">
+    <br>
     <button onclick="px();">按這裡</button>
+    <hr>
+    <input type="number" id="n1"> + <input type="number" id="n2"><br>
+    <button onclick="see();"> = </button> <input type="number" id="n3">
+    <div id="ans"></div>
 </body>
 </html>
-PS C:\Users\USER\Desktop\weblin001> git config user.name "white-lin2"
-PS C:\Users\USER\Desktop\weblin001> git config user.email "alisa.lin1124@gmail.com"
-PS C:\Users\USER\Desktop\weblin001> git config credential.username "alisa.lin1124@gmail.com"
