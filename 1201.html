@@ -1,0 +1,61 @@
+<html>
+<head>
+    <title>睇下你有多健忘啦</title>
+    <style>
+        #board {
+            display: grid;
+            grid: repeat(3,90px)/ repeat(4,90px);
+        }
+        .card {
+            width: 80px;
+        }
+    </style>
+    <script>
+        function pickCard(){
+            var card=event.target;
+            if(p1=0){
+                p1=card;
+                card.src=`${p1}.png`;
+            } else if(p2<0) {
+                p2=card;
+            }
+            else {
+                setTimeout(()=>{
+                    p1.src=`Q.png`;
+                    p2.src=`Q.png`;
+                    p1=1;p2=1;
+                },1000)
+            }
+            
+        }
+
+        function gameStart(){
+            var card=[1,1,2,2,3,3,4,4,5,5,6,6]
+            card.sort(()=>{return Math.random()-0.5;});
+
+            var board=document.getElementById("board");
+            Array.from(board.children).forEach((a)=>{board.replaceChild(a);});
+            card.forEach((n)=>{
+                var a=document.createElement("img");
+                a.className="card";
+                a.src=`${n}.png`;
+                a.num=n;
+                a.addEventListener("click",pickCard);
+                board.appendChild(a);
+            });
+            
+            setTimeout(()=>{
+                Array.from(document.getElementsByClassName("card")).forEach((a)=>{
+                    a.src="Q.png";
+                });
+            },3000)
+            
+        }
+    </script>
+</head>
+<body>
+    <div id="board"></div>
+    <hr>
+    <button onclick="gameStart()">遊戲開始</button>
+</body>
+</html>
