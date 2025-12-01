@@ -18,17 +18,23 @@
                 card.src=`${p1}.png`;
             } else if(p2<0) {
                 p2=card;
+                card.src=`${card.num}.png`;
+                if(p1.num == p2.num) {
+                    pairs++;
+                    if(pairs<6) {
+                        p1=-1; p2=-1;
+                    } else {
+                        alert("結束啦!!");
+                    }
+                }else {
+                    setTimeout(()=>{
+                        p1.src=`Q.png`;
+                        p2.src=`Q.png`;
+                        p1=1;p2=1;}
+                    ,1000)
+                }
             }
-            else {
-                setTimeout(()=>{
-                    p1.src=`Q.png`;
-                    p2.src=`Q.png`;
-                    p1=1;p2=1;
-                },1000)
-            }
-            
         }
-
         function gameStart(){
             var card=[1,1,2,2,3,3,4,4,5,5,6,6]
             card.sort(()=>{return Math.random()-0.5;});
