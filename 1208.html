@@ -1,0 +1,67 @@
+<html>
+<head>
+    <title>1208</title>
+    <style>
+        #map {
+           width: 800px;
+           height: 800px;
+           background: url("圖片/grass.jpg");
+           background-size: 30%;
+           /*background-repeat: repeat;*/
+           animation: bg_move 3s linear infinite;
+           position: relative;
+        }
+        @keyframes bg_move {
+            0% { background-position: 0% 0%; }
+            30% { background-position: 3% 0%; }
+            100% { background-position: 0% 0%; }
+        }
+        #role {
+            width: 48px;
+            height: 72px;
+            background-image: url("圖片/sprite.png");
+            background-position: 0px -288px;
+            animation: walking 1s steps(3) infinite;
+            position: absolute;
+            left: 376px;
+            top: 364px;
+        }
+        @keyframes walking {
+            0% { background-position-x: 0px; }
+            100% { background-position-x: -144px ;}
+        }
+    </style>
+    <script>
+        function mykeydown() {
+            event.preventDefault();
+            var role=document.getElementById("role");
+            if(event.key=="ArrowDown") {
+                role.style.backgroundPositionY="-288px";
+                if(role.posX < 728) role.posY++;
+            }else if(event.key=="ArrowLeft") {
+                role.style.backgroundPositionY="-360px";
+                if(role.posX > 0) role.posX--;
+            }else if(event.key=="ArrowRight") {
+                role.style.backgroundPositionY="-432px";
+                if(role.posX < 752) role.posX++;
+            }else if(event.key=="ArrowUp") {
+                role.style.backgroundPositionY="-504px";
+                if(role.posY > 0) role.posY--;
+            }
+            role.style.left=role.posX+"px";
+            role.style.top=role.posY+"px";
+        }
+        function page_init(){
+            var role=document.getElementById("role");
+            role.posX=376;
+            role.posY=364;
+        }
+        
+    </script>
+</head>
+<body onload="page_init();" onkeydown="mykeydown();">
+    <div id="map">
+        <div id="role"></div>
+    </div>
+</body>
+</html>
