@@ -1,0 +1,123 @@
+<html>
+<head>
+    <title>1215-宇宙射擊遊戲</title>
+    <style>
+        #spaces {
+            width: 800px;
+            height: 800px;
+            background: url("圖片/bg_stars.jpg");
+            animation: bg_move 2.3s linear infinite;
+        }
+        @keyframes bg_move {
+            0% {background-position-y: 0px;}
+            100% {background-position-y: 216px;}
+        }
+        #ship {
+            width: 40px;
+            height: 60px;
+            background: url("圖片/ship.png");
+            background-size: 40px 60px;
+            position: absolute;
+        }
+        .ufo {
+            width: 60px;
+            height: 40px;
+            background: url("圖片/ufo.png");
+            background-size: 60px 40px;
+            position: absolute;
+        }
+        .bollet {
+            width: 4px;
+            height: 6px;
+            background-color: beige;
+            position: absolute;
+        }
+    </style>
+    <script>
+
+
+        function game_init() {
+            dir={"ArrowLeft":0,"ArrowRight":0,"ArrowUp":0,"ArrowDown":0}
+            spaces={w:800,h:800}; //自定義一個物件
+            ship=document.getElementById("ship");
+            ship.w=40;
+            ship.h=60;
+            ship.posX=(spaces.w-ship.w)/2;
+            ship.posY=spaces.h-ship.h;
+            ship.style.left=ship.posX+"px";
+            ship.style.top=ship.posY+"px";
+            ship.move=setInterval(ship_move,5);
+            game_t1
+        }
+
+        function mykeydown() {
+            event.preventDefault();
+            dir[event.key]=1;
+        }
+
+        function mykeyup() {
+            event.preventDefault();
+            dir[event.key]=0;
+        }
+
+        function getRand() {
+            return Math.floor(Math.random() * (max-min+1)) +min;
+        }
+
+        function ship_move() {
+            if(ship.posX > 0 && dir["ArrowLeft"]) {
+                ship.posX++;
+            } else if(ship.posX + ship.w < spaces.w && dir["ArrowRight"]) {
+                ship.posX++;
+            }
+            ship.style.left=ship.posX + "px";
+        }
+        function ufo_move(ufo) {
+            if(ufo.posY + ufo.h > spaces.h) {
+                clearInterval(ufo.move);
+                ufo.remive();
+                return;
+            }
+            ufo.posY++;
+            ufo.posX +=getRand(-2,2);
+            if(ufo.posX < 0){
+                ufo.posX=0;
+            } else if(ufo.posX+ufo.w > spaces.w) {
+                ufo.posX = spaces.w-ufo.w;
+            }
+            ufo.style.left=ufo.posX+"px";
+            ufo.style,top=ufo.posY+"px";
+                    
+        }
+
+        function ufo_create() {
+            var u=document.createElement("img");
+            u.src="圖片/ufo.png";
+            u.className="ufo";
+            u.w=60;
+            u.h=40;
+            u.posX=getRand(0,spaces.w - u.w);
+            u.posY=getRand(0,10);
+            document.getElementById("spaces").appendChild(u);
+            u.style.left=u.posX+"px";
+            u.style.top=u.posY+"px";
+            u.move=setInterval(ufo_move,20,u);
+        }
+        function buttet_move(bt) {
+            if(bt.posY < 0) {
+                clearInterval(bt.move);
+                bt.remove
+            }
+        }
+        function shoot() {
+
+        }
+        
+    </script>
+</head>
+<body onload="game_init()" onkeydown="mykeyup()" onkeyup="mykeyup()">
+    <div id="spaces">
+        <div id="ship"></div>
+    </div>
+</body>
+</html>
