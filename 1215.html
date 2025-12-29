@@ -46,7 +46,55 @@
             ship.style.left=ship.posX+"px";
             ship.style.top=ship.posY+"px";
             ship.move=setInterval(ship_move,5);
-            game_t1=setInterval(ufo_create,1000);
+            game_score=0;
+            document.getElementById("score").innerHTML=game_score;
+            game_time=0;
+            document.getElementById("game_time").innerHTML=game_time;
+            game_timer=setInterval(function(){
+                game_time++;
+                document.getElementById("game_time").innerHTML=game_time;
+            },1000);
+            Array.from(document.getElementsByClassName("ufo")).forEach((u)=>{
+                u.remove();
+            });
+            ufo_creater=setInterval(ufo_create,1000);
+            game_starting=true;
+            document.getElementById("restart").style.display="none";
+        }
+
+        function game_over() {
+            game_starting=false;
+            clearInterval(ship.move);
+            clearInterval(ufo_creater);
+            clearInterval(game_timer);
+            document.getElementById("spaces").style.animationPlayState="paused";
+            Array.from(document.getElementsByClassName("ufo")).forEach((u)=>{
+                clearInterval(u.move);
+            });
+            Array.from(document.getElementsByClassName("bullet")).forEach((b)=>{
+                clearInterval(b.move);
+                b.remove();
+            });
+            document.getElementById("restart").style.display="block";
+
+            var ranking=sessionStorage.getItem("ranking");
+            if(ranking==null) {
+                ranking=[];
+                ranking.push({"name":prompt("請輸入你的名稱："),"score":game_score,"time":game_time});
+                sessionStorage.setItem("ranking",JSON.stringify(ranking));
+            } else {
+                var data=Array.from(JSON.parse(ranking));
+                if(data.length<5) {
+                    data.push({"name":prompt("請輸入你的名稱："),"score":game_score,"time":game_time});
+                } else if(game_score > data[4].score) {
+                    data.pop();
+                    data.push({"name":prompt("請輸入你的名稱："),"score":game_score,"time":game_time});
+                }
+                data.sort((a,b)=>{
+                    return b.score-a.score;
+                });
+                sessionStorage.setItem("ranking",JSON.stringify(data));
+            }
         }
 
         function mykeydown() {
@@ -109,7 +157,7 @@
             u.style.top=u.posY+"px";
             u.move=setInterval(ufo_move,20,u);
         }
-        function buttet_move(bt) {
+        function bullet_move(bt) {
             if(bt.posY < 0) {
                 clearInterval(bt.move);
                 bt.remove();
@@ -118,15 +166,18 @@
             bt.posY--;
             bt.style.top=bt.posY+"px";
 
-            Array.from(document.getElementsByClassName("ufo.")).filter((u)=>{
-                return (u.posX < bt.posX) && (u.posX + u.w > bt.posX + bt.w) && (u.posY + u.h >= bt.posY);
+            var hit_ufo = Array.from(document.getElementsByClassName("ufo")).filter((u)=>{
+                return (u.posX <= bt.posX) && (u.posX + u.w >= bt.posX + bt.w) && (u.posY + u.h >= bt.posY);
             });
-            if(hit_ufo.length > 0){
+            if(hit_ufo.length > 0) {
                 hit_ufo.forEach((u)=>{
-                clearInterval(u.move);
-                u.remove();
-                })
-                g
+                    clearInterval(u.move);
+                    u.remove();
+                });
+                clearInterval(bt.move);
+                bt.remove();
+                game_score++;
+                document.getElementById("score").innerHTML=game_score;
             }
         }
         function shoot() {
@@ -145,8 +196,14 @@
     </script>
 </head>
 <body onload="game_init()" onkeydown="mykeyup()" onkeyup="mykeyup()">
+    <div id="status" style="width:800px;">
+        <span>得分：<span id="score">0</span> 分</span>
+        <span style="float:right;">時間：<span id="game_time">0</span> 秒</span>
+    </div>
     <div id="spaces">
         <div id="ship"></div>
+        <!--img src="pic/ship.png" width="40px"-->
     </div>
+    <button id="restart" onclick="game_init();">重新開始</button>
 </body>
 </html>
