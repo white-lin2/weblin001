@@ -1,14 +1,32 @@
 <html>
 <head>
-    <title></title>
+    <title>五行</title>
     <style>
-
+          #board {
+            display: grid;
+            grid: repeat(3,90px) / repeat(4,90px); 
+        }
+        .card {
+            width:80px;
+        }
     </style>
+    <script>
+        
+    </script>
 </head>
 <body>
+    <img src="框.png" width="80px" >
+    <img src="框.png" width="80px" >
+    <img src="框.png" width="80px" >
+    <img src="框.png" width="80px" >
 
+    <div class="info-panel">
+        <div>分數: <span id="score">0</span></div>
+    </div>
+    <div id="grid"></div>
+    <button>重新開始</button>
 </body>
 </html>
-<!--卡牌組合遊戲
-    荒原構想 
+<!--卡牌消消樂遊戲
+    金木水火土
 -->
