@@ -12,6 +12,12 @@
 			font-family: "Noto Serif TC", serif;
 			font-weight: 700;
 		}
+        #time {
+            color: #8E2800;       
+            font-size: 17px;
+			font-family: "Noto Serif TC", serif;
+			font-weight: 700;
+        }
         #board {
             display: grid;
             grid: repeat(4, 90px) / repeat(5, 90px); 
@@ -21,6 +27,7 @@
         }
     </style>
     <script>
+        var timer, seconds = 0;
         function pickCard() {
             var card=event.target;
             if(p1<0) {
@@ -34,7 +41,8 @@
                     if(pairs<10) {
                         p1=-1; p2=-1;
                     } else {
-                        alert("五行歸位，遊戲結束");
+                        clearInterval(timer);
+                        alert(`五行歸位，遊戲結束`);
                     }
                 } else {
                     setTimeout(()=>{
@@ -45,7 +53,9 @@
                 }
             }
         }
+
         function gameStart() {
+            clearInterval(timer); seconds = 0; document.getElementById("game_time").innerText = 0;
             pairs=0;
             p1=-1; p2=-1;
             var cards=[1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5];
@@ -67,6 +77,10 @@
                 Array.from(document.getElementsByClassName("card")).forEach((a)=>{
                     a.src="五行/框.png";
                 });
+                timer = setInterval(function() {
+                seconds++;
+                document.getElementById("game_time").innerText = seconds;
+                }, 1000);
             },3000);
         }
     </script>
@@ -74,6 +88,9 @@
 <body>
     <div id="board"></div>
 	<button class="btn-style-oriental" onclick="gameStart();">遊戲啟動</button>
+    <div id="time">
+        <span>時間：<span id="game_time">0</span> 秒</span>
+    </div>
 </body>
 </html>
 <!--
